@@ -1,8 +1,11 @@
 package com.pfirewire.characterbuilder.controllers;
 
+import com.pfirewire.characterbuilder.models.User;
 import com.pfirewire.characterbuilder.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -17,18 +20,18 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-
+//    // Shows form to sign up as a user
+    @GetMapping("/signup")
+    public String showSignupForm(Model model) {
+        // Sending empty user to template
+        model.addAttribute("user", new User());
+        return "users/signup";
+    }
 
 
     // Code taken from Spring Boot Exercises
 
-//    // Shows form to sign up as a user
-//    @GetMapping("/signup")
-//    public String showSignupForm(Model model) {
-//        // Sending empty user to template
-//        model.addAttribute("user", new User());
-//        return "users/signup";
-//    }
+
 //
 //    // Saves user to users table
 //    @PostMapping("/signup")

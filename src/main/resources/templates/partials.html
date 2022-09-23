@@ -22,6 +22,8 @@
 </head>
 <body>
 
+
+<!--Sitebar Fragment-->
 <nav th:fragment="siteBar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand ps-3" href="#">Pfirewire</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +44,36 @@
         </ul>
     </div>
 </nav>
+
+
+<!--Signup Form Fragment-->
+<!--Forms-->
+<!--Signup Form Fragment-->
+<form th:fragment="signupForm" class="text-light">
+    <div class="mb-3">
+        <label for="emailAddress" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="emailAddress">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="email" class="form-control" id="username">
+        <div id="usernameHelp" class="form-text">This will be your alias on the site</div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password">
+        <div id="passwordHelpLength" class="form-text">Must be between 8-50 characters</div>
+        <div id="passwordHelpUppercaseLetter" class="form-text">Must contain at least 1 uppercase letter</div>
+        <div id="passwordHelpLowercaseLetter" class="form-text">Must contain at least 1 lowercase letter</div>
+        <div id="passwordHelpSpecialCharacters" class="form-text">Must contain at least 1 special character (ie !, @, #, etc)</div>
+    </div>
+    <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
 <!--Scripts Fragment-->
