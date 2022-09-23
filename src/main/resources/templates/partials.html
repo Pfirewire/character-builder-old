@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--Meta Tags Fragment-->
+    <div th:fragment="metaTags" th:remove="tag">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+    </div>
+
+    <!--Links Fragment-->
+    <div th:fragment="links" th:remove="tag">
+        <link rel="shortcut icon" type="images/png" th:href="@{/megamanicon.png}">
+    </div>
+
+</head>
+<body>
+
+
+<!--Scripts Fragment-->
+<div th:fragment="scripts" th:remove="tag">
+    <!-- jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- Bootstrap Masonry CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+</div>
+</body>
+</html>
