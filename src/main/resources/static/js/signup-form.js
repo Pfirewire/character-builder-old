@@ -13,7 +13,7 @@ $(() => {
         return !(isNaN(Number(input)));
     }
 
-    const betweenEightAndFifty = input => {
+    const atLeastEight = input => {
         if(input.length >= 8) {
             return true;
         } else {
@@ -23,7 +23,7 @@ $(() => {
 
     const containsLowercase = input => {
         for(let i = 0; i < input.length; i++) {
-            if(input.charAt(i).toLowerCase() === input.charAt(i)) {
+            if(input.charAt(i).toLowerCase() === input.charAt(i) && !(isNumber(input.charAt(i)))) {
                 return true;
             }
         }
@@ -32,7 +32,7 @@ $(() => {
 
     const containsUppercase = input => {
         for(let i = 0; i < input.length; i++) {
-            if(input.charAt(i).toUpperCase() === input.charAt(i)) {
+            if(input.charAt(i).toUpperCase() === input.charAt(i) && !(isNumber(input.charAt(i)))) {
                 return true;
             }
         }
@@ -61,7 +61,7 @@ $(() => {
     }
 
     const requirementsNotMet = (input) => {
-        if(betweenEightAndFifty(input) && containsLowercase(input) && containsUppercase(input) && containsNumber(input) && containsSpecialCharacter(input)){
+        if(atLeastEight(input) && containsLowercase(input) && containsUppercase(input) && containsNumber(input) && containsSpecialCharacter(input)){
             return false;
         } else {
             return true;
@@ -93,23 +93,38 @@ $(() => {
         }
     }
 
-    const changeIndividualRequirements = selector => {
-
+    const changeIndividualRequirements = value => {
+        lengthMet = atLeastEight(value);
+        lengthMet ? revertText($("#passwordHelpLength")) : makeTextRed($("#passwordHelpLength"));
+        lowercaseMet = containsLowercase(value);
+        lowercaseMet ? revertText($("#passwordHelpLowercaseLetter")) : makeTextRed($("#passwordHelpLowercaseLetter"));
+        uppercaseMet = containsUppercase(value);
+        uppercaseMet ? revertText($("#passwordHelpUppercaseLetter")) : makeTextRed($("#passwordHelpUppercaseLetter"));
+        numberMet = containsNumber(value);
+        numberMet ? revertText($("#passwordHelpNumber")) : makeTextRed($("#passwordHelpNumber"));
+        specialMet = containsSpecialCharacter(value);
+        specialMet ? revertText($("#passwordHelpSpecialCharacters")) : makeTextRed($("#passwordHelpSpecialCharacters"));
     }
 
     $("#password")
         .focus(() => {
             console.log("inside password focus. userHasFocusedPassword: " + userHasFocusedPassword);
             if(!userHasFocusedPassword) {
-                makeTextRed($("#passwordHelpLength, #passwordHelpUppercaseLetter, #passwordHelpLowercaseLetter, #passwordHelpNumber, #passwordHelpSpecialCharacters"));
+                makeTextRed($(`
+                #passwordHelpLength, 
+                #passwordHelpUppercaseLetter, 
+                #passwordHelpLowercaseLetter, 
+                #passwordHelpNumber, 
+                #passwordHelpSpecialCharacters
+                `));
             }
             userHasFocusedPassword = true;
             changeBorderBasedOnRequirements($("#password"));
-            changeIndividualRequirements($("#password"));
+            changeIndividualRequirements($("#password").val());
         })
         .keyup(() => {
             changeBorderBasedOnRequirements($("#password"));
-            changeIndividualRequirements($("#password"));
+            changeIndividualRequirements($("#password").val());
         })
     ;
 
