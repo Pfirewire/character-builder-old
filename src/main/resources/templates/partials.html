@@ -69,12 +69,10 @@
     <div class="mb-3">
         <label for="signupEmailAddress" class="form-label">Email Address</label>
         <input type="email" class="form-control" id="signupEmailAddress" th:field="*{email}" autocomplete="off">
-        <div id="signupEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
         <label for="signupUsername" class="form-label">Username</label>
         <input type="text" class="form-control" id="signupUsername" th:field="*{username}" autocomplete="off">
-        <div id="signupUsernameHelp" class="form-text">This will be your alias on the site</div>
     </div>
     <div class="mb-3">
         <label for="signupPassword" class="form-label">Password</label>
@@ -88,6 +86,7 @@
     <div class="mb-3">
         <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
         <input type="password" class="form-control" id="signupConfirmPassword">
+        <div id="passwordsMustMatch" class="form-text d-none" style="color: #F00;">Passwords must match</div>
     </div>
     <button id="signupPasswordSubmit" type="submit" class="btn btn-primary" disabled>Signup</button>
 </form>

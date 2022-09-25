@@ -112,7 +112,13 @@ $(() => {
     }
 
     const changeBorderPasswordMatch = selector => {
-        confirmMatchesPassword() ? revertBorder(selector) : makeBorderRed(selector);
+        if(confirmMatchesPassword()) {
+            revertBorder(selector);
+            $("#passwordsMustMatch").removeClass("d-block").addClass("d-none");
+        } else {
+            makeBorderRed(selector);
+            $("#passwordsMustMatch").removeClass("d-none").addClass("d-block");
+        }
     }
 
     const submitButtonEnableDisable = () => {
