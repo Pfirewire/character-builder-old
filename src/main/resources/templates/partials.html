@@ -33,16 +33,18 @@
             <span sec:authorize="isAuthenticated()">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Create a Character</a>
+                        <a class="nav-link" th:href="@{/create}">Create a Character</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Characters</a>
+                        <a class="nav-link" th:href="@{/characters}">My Characters</a>
                     </li>
                     <li>
                         <a class="nav-link" href="#">Game Rules</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#">Logout</a>
+                        <form th:action="@{/logout}" th:method="post">
+                            <button class="btn nav-link">Logout</button>
+                        </form>
                     </li>
                 </ul>
             </span>
@@ -63,20 +65,20 @@
 
 <!--Forms-->
 <!--Signup Form Fragment-->
-<form th:fragment="signupForm" class="text-light">
+<form th:fragment="signupForm" class="text-light" th:action="@{/signup}" method="POST" th:object="${user}">
     <div class="mb-3">
         <label for="signupEmailAddress" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="signupEmailAddress">
+        <input type="email" class="form-control" id="signupEmailAddress" th:field="*{email}" autocomplete="off">
         <div id="signupEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
         <label for="signupUsername" class="form-label">Username</label>
-        <input type="email" class="form-control" id="signupUsername">
+        <input type="text" class="form-control" id="signupUsername" th:field="*{username}" autocomplete="off">
         <div id="signupUsernameHelp" class="form-text">This will be your alias on the site</div>
     </div>
     <div class="mb-3">
         <label for="signupPassword" class="form-label">Password</label>
-        <input type="password" class="form-control" id="signupPassword">
+        <input type="password" class="form-control" id="signupPassword" th:field="*{password}" autocomplete="off">
         <div id="signupPasswordHelpLength" class="form-text">Must be at least 8 characters long</div>
         <div id="signupPasswordHelpUppercaseLetter" class="form-text">Must contain at least 1 uppercase letter</div>
         <div id="signupPasswordHelpLowercaseLetter" class="form-text">Must contain at least 1 lowercase letter</div>
@@ -90,14 +92,14 @@
     <button id="signupPasswordSubmit" type="submit" class="btn btn-primary" disabled>Signup</button>
 </form>
 <!--Login Form Fragment-->
-<form th:fragment="loginForm" class="text-light">
+<form th:fragment="loginForm" class="text-light" th:action="@{/login}" method="post">
     <div class="mb-3">
-        <label for="loginUsername" class="form-label">Username</label>
-        <input type="email" class="form-control" id="loginUsername">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" autocomplete="off">
     </div>
     <div class="mb-3">
-        <label for="loginPassword" class="form-label">Password</label>
-        <input type="password" class="form-control" id="loginPassword">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" autocomplete="off">
     </div>
     <button id="loginPasswordSubmit" type="submit" class="btn btn-primary">Login</button>
 </form>

@@ -2,7 +2,7 @@ package com.pfirewire.characterbuilder.models;
 
 import java.util.List;
 
-public class Character {
+public class PlayerCharacter {
 
     private String name;
     private int level;
@@ -13,9 +13,9 @@ public class Character {
 
     // Constructors
 
-    public Character () {}
+    public PlayerCharacter() {}
 
-    public Character(String name, int level, Race race, CharacterClass charClass) {
+    public PlayerCharacter(String name, int level, Race race, CharacterClass charClass) {
         this.name = name;
         this.level = level;
         this.race = race;

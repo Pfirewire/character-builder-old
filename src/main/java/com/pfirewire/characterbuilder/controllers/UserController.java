@@ -28,6 +28,16 @@ public class UserController {
         return "users/signup";
     }
 
+    @PostMapping("/signup")
+    public String saveUser(@ModelAttribute User user) {
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDao.save(user);
+        return "/index";
+    }
+
+
+
 
     // Code taken from Spring Boot Exercises
 

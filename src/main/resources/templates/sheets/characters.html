@@ -2,12 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+
     <div th:replace="partials :: metaTags" />
     <div th:replace="partials :: links" />
 
-    <title>Title</title>
+    <title>My Characters</title>
 </head>
 <body>
+<nav th:replace="partials :: siteBar" />
+
+<h1 class="text-center my-5">My Characters</h1>
 
 <div th:replace="partials :: scripts" />
 </body>
