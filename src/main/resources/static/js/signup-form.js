@@ -21,6 +21,7 @@ $(() => {
         }
     }
 
+
     const containsLowercase = input => {
         for(let i = 0; i < input.length; i++) {
             if(input.charAt(i).toLowerCase() === input.charAt(i) && !(isNumber(input.charAt(i)))) {
