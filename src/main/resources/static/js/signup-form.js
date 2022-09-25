@@ -24,7 +24,7 @@ $(() => {
 
     const containsLowercase = input => {
         for(let i = 0; i < input.length; i++) {
-            if(input.charAt(i).toLowerCase() === input.charAt(i) && !(isNumber(input.charAt(i)))) {
+            if(input.charAt(i).toLowerCase() === input.charAt(i) && !(isNumber(input.charAt(i))) && !(containsSpecialCharacter(input.charAt(i)))) {
                 return true;
             }
         }
@@ -33,7 +33,7 @@ $(() => {
 
     const containsUppercase = input => {
         for(let i = 0; i < input.length; i++) {
-            if(input.charAt(i).toUpperCase() === input.charAt(i) && !(isNumber(input.charAt(i)))) {
+            if(input.charAt(i).toUpperCase() === input.charAt(i) && !(isNumber(input.charAt(i))) && !(containsSpecialCharacter(input.charAt(i)))) {
                 return true;
             }
         }
