@@ -7,6 +7,7 @@ $(() => {
     let lowercaseMet = false;
     let numberMet = false;
     let specialMet = false;
+    let disabledAttribute = $("#passwordSubmit").attr("disabled");
 
 
     const isNumber = input => {
@@ -78,7 +79,6 @@ $(() => {
     }
 
     const makeTextRed = selector => {
-        console.log("inside makeTextRed");
         selector.css("color", "#F00");
     }
 
@@ -107,6 +107,26 @@ $(() => {
         specialMet ? revertText($("#passwordHelpSpecialCharacters")) : makeTextRed($("#passwordHelpSpecialCharacters"));
     }
 
+    const confirmMatchesPassword = () => {
+        return $("#confirmPassword").val() === $("#password").val();
+    }
+
+    const changeBorderPasswordMatch = selector => {
+        confirmMatchesPassword() ? revertBorder(selector) : makeBorderRed(selector);
+    }
+
+    const submitButtonEnableDisable = () => {
+        disabledAttribute = $("#passwordSubmit").attr("disabled");
+        if(!(requirementsNotMet($("#password").val())) && confirmMatchesPassword()) {
+            passwordFulfillsRequirements = true;
+        }
+        if(passwordFulfillsRequirements) {
+            $("#passwordSubmit").removeAttr("disabled");
+        } else if(typeof disabledAttribute === undefined || typeof disabledAttribute === false) {
+            $("#passwordSubmit").attr("disabled", "");
+        }
+    }
+
     $("#password")
         .focus(() => {
             console.log("inside password focus. userHasFocusedPassword: " + userHasFocusedPassword);
@@ -126,13 +146,21 @@ $(() => {
         .keyup(() => {
             changeBorderBasedOnRequirements($("#password"));
             changeIndividualRequirements($("#password").val());
+            submitButtonEnableDisable();
         })
     ;
 
 
-    $("#confirmPassword").focus(() => {
-        userHasFocusedConfirm = true;
-    });
+    $("#confirmPassword")
+        .focus(() => {
+            userHasFocusedConfirm = true;
+            changeBorderPasswordMatch($("#confirmPassword"));
+        })
+        .keyup(() => {
+            changeBorderPasswordMatch($("#confirmPassword"));
+            submitButtonEnableDisable();
+        })
+    ;
 
 
 

@@ -3,6 +3,9 @@ package com.pfirewire.characterbuilder.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -12,10 +15,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String email;
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String username;
+    @NotBlank
+    @Size(min = 8, message = "Password must have at least 8 characters.")
     @Column(nullable = false)
     @JsonIgnore
     private String password;
