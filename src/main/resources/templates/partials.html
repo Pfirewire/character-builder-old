@@ -46,36 +46,47 @@
 </nav>
 
 
-<!--Signup Form Fragment-->
 <!--Forms-->
 <!--Signup Form Fragment-->
 <form th:fragment="signupForm" class="text-light">
     <div class="mb-3">
-        <label for="emailAddress" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="emailAddress">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="signupEmailAddress" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="signupEmailAddress">
+        <div id="signupEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="email" class="form-control" id="username">
-        <div id="usernameHelp" class="form-text">This will be your alias on the site</div>
+        <label for="signupUsername" class="form-label">Username</label>
+        <input type="email" class="form-control" id="signupUsername">
+        <div id="signupUsernameHelp" class="form-text">This will be your alias on the site</div>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password">
-        <div id="passwordHelpLength" class="form-text">Must be at least 8 characters long</div>
-        <div id="passwordHelpUppercaseLetter" class="form-text">Must contain at least 1 uppercase letter</div>
-        <div id="passwordHelpLowercaseLetter" class="form-text">Must contain at least 1 lowercase letter</div>
-        <div id="passwordHelpNumber" class="form-text">Must contain at least 1 number</div>
-        <div id="passwordHelpSpecialCharacters" class="form-text">Must contain at least 1 special character (!@#$%^&*()-=_+)</div>
+        <label for="signupPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="signupPassword">
+        <div id="signupPasswordHelpLength" class="form-text">Must be at least 8 characters long</div>
+        <div id="signupPasswordHelpUppercaseLetter" class="form-text">Must contain at least 1 uppercase letter</div>
+        <div id="signupPasswordHelpLowercaseLetter" class="form-text">Must contain at least 1 lowercase letter</div>
+        <div id="signupPasswordHelpNumber" class="form-text">Must contain at least 1 number</div>
+        <div id="signupPasswordHelpSpecialCharacters" class="form-text">Must contain at least 1 special character: !@#$%^&*()-=_+</div>
     </div>
     <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword">
+        <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="signupConfirmPassword">
     </div>
-    <button id="passwordSubmit" type="submit" class="btn btn-primary" disabled>Submit</button>
+    <button id="signupPasswordSubmit" type="submit" class="btn btn-primary" disabled>Signup</button>
 </form>
 
+<!--Login Form Fragment-->
+<form th:fragment="loginForm" class="text-light">
+    <div class="mb-3">
+        <label for="loginUsername" class="form-label">Username</label>
+        <input type="email" class="form-control" id="loginUsername">
+    </div>
+    <div class="mb-3">
+        <label for="loginPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="loginPassword">
+    </div>
+    <button id="loginPasswordSubmit" type="submit" class="btn btn-primary">Login</button>
+</form>
 
 <!--Scripts Fragment-->
 <div th:fragment="scripts" th:remove="tag">

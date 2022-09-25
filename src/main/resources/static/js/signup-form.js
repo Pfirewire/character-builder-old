@@ -7,7 +7,7 @@ $(() => {
     let lowercaseMet = false;
     let numberMet = false;
     let specialMet = false;
-    let disabledAttribute = $("#passwordSubmit").attr("disabled");
+    let disabledAttribute = $("#signupPasswordSubmit").attr("disabled");
 
 
     const isNumber = input => {
@@ -96,19 +96,19 @@ $(() => {
 
     const changeIndividualRequirements = value => {
         lengthMet = atLeastEight(value);
-        lengthMet ? revertText($("#passwordHelpLength")) : makeTextRed($("#passwordHelpLength"));
+        lengthMet ? revertText($("#signupPasswordHelpLength")) : makeTextRed($("#signupPasswordHelpLength"));
         lowercaseMet = containsLowercase(value);
-        lowercaseMet ? revertText($("#passwordHelpLowercaseLetter")) : makeTextRed($("#passwordHelpLowercaseLetter"));
+        lowercaseMet ? revertText($("#signupPasswordHelpLowercaseLetter")) : makeTextRed($("#signupPasswordHelpLowercaseLetter"));
         uppercaseMet = containsUppercase(value);
-        uppercaseMet ? revertText($("#passwordHelpUppercaseLetter")) : makeTextRed($("#passwordHelpUppercaseLetter"));
+        uppercaseMet ? revertText($("#signupPasswordHelpUppercaseLetter")) : makeTextRed($("#signupPasswordHelpUppercaseLetter"));
         numberMet = containsNumber(value);
-        numberMet ? revertText($("#passwordHelpNumber")) : makeTextRed($("#passwordHelpNumber"));
+        numberMet ? revertText($("#signupPasswordHelpNumber")) : makeTextRed($("#signupPasswordHelpNumber"));
         specialMet = containsSpecialCharacter(value);
-        specialMet ? revertText($("#passwordHelpSpecialCharacters")) : makeTextRed($("#passwordHelpSpecialCharacters"));
+        specialMet ? revertText($("#signupPasswordHelpSpecialCharacters")) : makeTextRed($("#signupPasswordHelpSpecialCharacters"));
     }
 
     const confirmMatchesPassword = () => {
-        return $("#confirmPassword").val() === $("#password").val();
+        return $("#signupConfirmPassword").val() === $("#signupPassword").val();
     }
 
     const changeBorderPasswordMatch = selector => {
@@ -116,52 +116,55 @@ $(() => {
     }
 
     const submitButtonEnableDisable = () => {
-        disabledAttribute = $("#passwordSubmit").attr("disabled");
-        if(!(requirementsNotMet($("#password").val())) && confirmMatchesPassword()) {
+        disabledAttribute = $("#signupPasswordSubmit").attr("disabled");
+        if(!(requirementsNotMet($("#signupPassword").val())) && confirmMatchesPassword()) {
             passwordFulfillsRequirements = true;
         }
         if(passwordFulfillsRequirements) {
-            $("#passwordSubmit").removeAttr("disabled");
+            $("#signupPasswordSubmit").removeAttr("disabled");
         } else if(typeof disabledAttribute === undefined || typeof disabledAttribute === false) {
-            $("#passwordSubmit").attr("disabled", "");
+            $("#signupPasswordSubmit").attr("disabled", "");
         }
     }
 
-    $("#password")
+    $("#signupPassword")
         .focus(() => {
             console.log("inside password focus. userHasFocusedPassword: " + userHasFocusedPassword);
             if(!userHasFocusedPassword) {
                 makeTextRed($(`
-                #passwordHelpLength, 
-                #passwordHelpUppercaseLetter, 
-                #passwordHelpLowercaseLetter, 
-                #passwordHelpNumber, 
-                #passwordHelpSpecialCharacters
+                #signupPasswordHelpLength, 
+                #signupPasswordHelpUppercaseLetter, 
+                #signupPasswordHelpLowercaseLetter, 
+                #signupPasswordHelpNumber, 
+                #signupPasswordHelpSpecialCharacters
                 `));
             }
             userHasFocusedPassword = true;
-            changeBorderBasedOnRequirements($("#password"));
-            changeIndividualRequirements($("#password").val());
+            changeBorderBasedOnRequirements($("#signupPassword"));
+            changeIndividualRequirements($("#signupPassword").val());
         })
         .keyup(() => {
-            changeBorderBasedOnRequirements($("#password"));
-            changeIndividualRequirements($("#password").val());
+            changeBorderBasedOnRequirements($("#signupPassword"));
+            changeIndividualRequirements($("#signupPassword").val());
             submitButtonEnableDisable();
         })
     ;
 
-
-    $("#confirmPassword")
+    $("#signupConfirmPassword")
         .focus(() => {
             userHasFocusedConfirm = true;
-            changeBorderPasswordMatch($("#confirmPassword"));
+            changeBorderPasswordMatch($("#signupConfirmPassword"));
         })
         .keyup(() => {
-            changeBorderPasswordMatch($("#confirmPassword"));
+            changeBorderPasswordMatch($("#signupConfirmPassword"));
             submitButtonEnableDisable();
         })
     ;
 
+    $("#notAUserToggle")
+        .click(() => {
+            $("#signupContainer").slideToggle();
+        });
 
 
 });

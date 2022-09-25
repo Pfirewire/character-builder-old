@@ -5,10 +5,42 @@
     <div th:replace="partials :: metaTags" />
     <div th:replace="partials :: links" />
 
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
+<nav th:replace="partials :: siteBar" />
+
+
+
+
+<div class="container my-5">
+    <div class="row g-5">
+        <div class="col-12 col-lg-5">
+            <div class="container bg-dark rounded-3 p-5">
+                <h1 class="text-center text-light">Login</h1>
+
+                <div th:replace="partials :: loginForm" />
+                <p id="notAUserToggle" class="text-light mt-5" style="cursor: pointer;">
+                    Not a user? Click here to signup
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-lg-7">
+            <div id="signupContainer" class="container bg-dark rounded-3 p-5" style="display: none;">
+                <h1 class="text-center text-light">Signup</h1>
+
+                <div th:replace="partials :: signupForm" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <div th:replace="partials :: scripts" />
+
+<script th:src="@{/js/signup-form.js}" />
+<script src="../../static/js/signup-form.js"></script>
+
 </body>
 </html>
