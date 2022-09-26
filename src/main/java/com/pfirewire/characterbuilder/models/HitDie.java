@@ -12,7 +12,7 @@ public class HitDie {
     private Long id;
     @Column(nullable = false, unique = true)
     private int value;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hitdie")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hitDie")
     private List<CharacterClass> classes;
 
     public HitDie() {}

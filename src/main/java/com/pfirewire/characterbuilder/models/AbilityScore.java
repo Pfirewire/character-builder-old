@@ -18,8 +18,10 @@ public class AbilityScore {
     private String quickDescription;
     @Column(nullable = false)
     private String longDescription;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ability_score")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "abilityScore")
     private List<Skill> skills;
+    @ManyToOne
+    private AbilityBonus abilityBonus;
 
 
     public AbilityScore() {}
@@ -62,5 +64,12 @@ public class AbilityScore {
 
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
+    }
+
+    public AbilityBonus getAbilityBonus() {
+        return abilityBonus;
+    }
+    public void setAbilityBonus(AbilityBonus abilityBonus) {
+        this.abilityBonus = abilityBonus;
     }
 }

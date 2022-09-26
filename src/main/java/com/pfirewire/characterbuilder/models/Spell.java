@@ -38,7 +38,7 @@ public class Spell {
     private String damageType;
     @Column
     private String school;
-    @ManyToMany(mappedBy = "spells")
+    @ManyToMany(mappedBy = "spellList")
     private List<CharacterClass> classes;
 
     public Spell() {}

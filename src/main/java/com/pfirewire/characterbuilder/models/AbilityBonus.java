@@ -14,7 +14,7 @@ public class AbilityBonus {
     private AbilityScore abilityScore;
     @Column(nullable = false)
     private int bonus;
-    @ManyToMany(mappedBy = "ability_bonuses")
+    @ManyToMany(mappedBy = "abilityBonuses")
     private List<Race> races;
 
     public AbilityBonus() {}
@@ -33,5 +33,12 @@ public class AbilityBonus {
 
     public void setBonus(int bonus) {
         this.bonus = bonus;
+    }
+
+    public List<Race> getRaces() {
+        return races;
+    }
+    public void setRaces(List<Race> races) {
+        this.races = races;
     }
 }

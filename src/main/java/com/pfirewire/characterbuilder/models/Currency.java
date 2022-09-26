@@ -14,7 +14,7 @@ public class Currency {
     private int value;
     @Column(nullable = false)
     private String unit;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "currency")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cost")
     private List<Equipment> equipmentList;
 
     public Currency() {}

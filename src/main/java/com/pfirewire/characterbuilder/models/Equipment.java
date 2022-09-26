@@ -19,7 +19,7 @@ public class Equipment {
     private int weight;
     @Column
     private String description;
-    @ManyToMany(mappedBy = "equipment")
+    @ManyToMany(mappedBy = "startingEquipment")
     private List<CharacterClass> classStartsWith;
 
 
