@@ -3,29 +3,25 @@ package com.pfirewire.characterbuilder.controllers;
 
 import com.pfirewire.characterbuilder.models.*;
 import com.pfirewire.characterbuilder.repositories.*;
-import com.pfirewire.characterbuilder.services.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
-public class CharacterController {
+public class PlayerCharacterController {
 
     // Repositories and Services
     private final UserRepository userDao;
+    private final PlayerCharacterRepository playerCharacterDao;
 
     // Constructor
-    public CharacterController(
-            UserRepository userDao)
+    public PlayerCharacterController(
+            UserRepository userDao,
+            PlayerCharacterRepository playerCharacterDao)
     {
         this.userDao = userDao;
+        this.playerCharacterDao = playerCharacterDao;
     }
 
     // Displays Create Character Form
