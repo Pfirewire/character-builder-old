@@ -30,6 +30,14 @@ public class Race {
             inverseJoinColumns = {@JoinColumn(name = "ability_bonus_id")}
     )
     private List<AbilityBonus> abilityBonuses;
+    @Column(columnDefinition = "TEXT")
+    private String alignment;
+    @Column(columnDefinition = "TEXT")
+    private String age;
+    @Column
+    private String size;
+    @Column(columnDefinition = "TEXT")
+    private String sizeDescription;
 
     public Race() {}
 
@@ -57,6 +65,35 @@ public class Race {
         this.abilityBonuses = abilityBonuses;
     }
 
+    public String getAlignment() {
+        return alignment;
+    }
 
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+    }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getSizeDescription() {
+        return sizeDescription;
+    }
+
+    public void setSizeDescription(String sizeDescription) {
+        this.sizeDescription = sizeDescription;
+    }
 }

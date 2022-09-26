@@ -23,7 +23,7 @@ public class PlayerCharacter {
     private Race race;
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private CharacterClass charClass;
+    private CharacterClass characterClass;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "characters_ability_scores",
@@ -46,11 +46,11 @@ public class PlayerCharacter {
 
     public PlayerCharacter() {}
 
-    public PlayerCharacter(String name, int level, Race race, CharacterClass charClass) {
+    public PlayerCharacter(String name, int level, Race race, CharacterClass characterClass) {
         this.name = name;
         this.level = level;
         this.race = race;
-        this.charClass = charClass;
+        this.characterClass = characterClass;
     }
     // Getters and Setters
 
@@ -78,12 +78,12 @@ public class PlayerCharacter {
         this.race = race;
     }
 
-    public CharacterClass getCharClass() {
-        return charClass;
+    public CharacterClass getCharacterClass() {
+        return characterClass;
     }
 
-    public void setCharClass(CharacterClass charClass) {
-        this.charClass = charClass;
+    public void setCharacterClass(CharacterClass characterClass) {
+        this.characterClass = characterClass;
     }
 
     public List<AbilityScore> getAbilityScores() {
@@ -100,5 +100,12 @@ public class PlayerCharacter {
 
     public void setSpells(List<Spell> spells) {
         this.spells = spells;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 }

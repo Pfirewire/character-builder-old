@@ -3,10 +3,14 @@ package com.pfirewire.characterbuilder.controllers;
 
 import com.pfirewire.characterbuilder.models.*;
 import com.pfirewire.characterbuilder.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class PlayerCharacterController {
@@ -14,14 +18,20 @@ public class PlayerCharacterController {
     // Repositories and Services
     private final UserRepository userDao;
     private final PlayerCharacterRepository playerCharacterDao;
+    private final RaceRepository raceDao;
+    private final CharacterClassRepository characterClassDao;
 
     // Constructor
     public PlayerCharacterController(
             UserRepository userDao,
-            PlayerCharacterRepository playerCharacterDao)
+            PlayerCharacterRepository playerCharacterDao,
+            RaceRepository raceDao,
+            CharacterClassRepository characterClassDao)
     {
         this.userDao = userDao;
         this.playerCharacterDao = playerCharacterDao;
+        this.raceDao = raceDao;
+        this.characterClassDao = characterClassDao;
     }
 
     // Displays Create Character Form
@@ -31,12 +41,35 @@ public class PlayerCharacterController {
         return "sheets/create";
     }
 
+    @PostMapping("/create")
+    public String createPlayerCharacter(
+            @ModelAttribute @Valid PlayerCharacter playerCharacter,
+            @RequestParam(name = "allRaces") String race,
+            @RequestParam(name = "allClasses") String characterClass,
+            Errors validation,
+            Model model)
+    {
+        if(validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("playerCharacter", playerCharacter);
+            return "sheets/create";
+        }
+
+        playerCharacter.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        playerCharacter.setRace(raceDao.findByType(race));
+        playerCharacter.setCharacterClass(characterClassDao.findByName(characterClass));
+        playerCharacterDao.save(playerCharacter);
+        return "redirect:/characters";
+    }
+
     @GetMapping("/characters")
     public String showCharacters(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
         return "sheets/characters";
     }
+
+
 
 
 

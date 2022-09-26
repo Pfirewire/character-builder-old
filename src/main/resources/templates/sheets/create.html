@@ -15,10 +15,10 @@
 <h1 class="text-center my-5">Create a Character</h1>
 
 <div class="container bg-dark rounded-3 p-5">
-    <form id="createCharacterForm" class="text-light" th:action="@{/create}" method="POST">
+    <form id="createCharacterForm" class="text-light" th:action="@{/create}" method="POST" th:object="${playerCharacter}">
         <div id="characterNameDiv" class="mb-3">
             <label for="characterName">Choose your character's name: </label>
-            <input id="characterName" type="text">
+            <input id="characterName" type="text" th:field="*{name}">
         </div>
         <div id="chooseClassDiv"></div>
         <div id="chooseRaceDiv" class="my-3"></div>

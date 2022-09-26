@@ -1,6 +1,7 @@
 package com.pfirewire.characterbuilder.controllers;
 
 import com.pfirewire.characterbuilder.models.User;
+import com.pfirewire.characterbuilder.repositories.PlayerCharacterRepository;
 import com.pfirewire.characterbuilder.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,17 @@ public class UserController {
 
     // Repositories and Services
     private UserRepository userDao;
+    private PlayerCharacterRepository playerCharacterDao;
     private PasswordEncoder passwordEncoder;
 
     // Constructor
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    public UserController(
+            UserRepository userDao,
+            PlayerCharacterRepository playerCharacterDao,
+            PasswordEncoder passwordEncoder)
+    {
         this.userDao = userDao;
+        this.playerCharacterDao = playerCharacterDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -42,23 +49,6 @@ public class UserController {
     // Code taken from Spring Boot Exercises
 
 
-//
-//    // Saves user to users table
-//    @PostMapping("/signup")
-//    public String saveUser(@ModelAttribute User user, @RequestParam(value = "confirmPassword") String confirmPassword) {
-//        // Hashing password
-//        String hash = passwordEncoder.encode(user.getPassword());
-//        // Checking if password and confirm password are the same
-//        if(passwordEncoder.matches(confirmPassword, hash)) {
-//            // Setting user password to the hash and saving user to table
-//            user.setPassword(hash);
-//            userDao.save(user);
-//            return "redirect:/login";
-//        } else {
-//            // Redirecting user back to signup form
-//            return "users/signup";
-//        }
-//    }
 //
 //    // Shows user profile
 //    // At the moment this just shows the list of all posts user has created
