@@ -1,12 +1,20 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "proficiencies")
 public class Proficiency {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
-    private String type;
+    @ManyToMany(mappedBy = "proficiencies")
     private List<CharacterClass> classes;
+    @ManyToMany(mappedBy = "proficiencies")
     private List<Race> races;
 
     public Proficiency() {}
@@ -19,13 +27,13 @@ public class Proficiency {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+//    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
 
     public List<CharacterClass> getClasses() {
         return classes;

@@ -1,15 +1,46 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Entity
+@Table(name = "characters")
 public class PlayerCharacter {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
+    @Column(nullable = false)
     private String name;
+    @NotBlank
+    @Column(nullable = false)
     private int level;
+    @ManyToOne
+    @JoinColumn(name = "race_id")
     private Race race;
+    @ManyToOne
+    @JoinColumn(name = "class_id")
     private CharacterClass charClass;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "characters_ability_scores",
+            joinColumns = {@JoinColumn(name = "character_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ability_score_id")}
+    )
     private List<AbilityScore> abilityScores;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "characters_spells",
+            joinColumns = {@JoinColumn(name = "character_id")},
+            inverseJoinColumns = {@JoinColumn(name = "spell_id")}
+    )
     private List<Spell> spells;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     // Constructors
 

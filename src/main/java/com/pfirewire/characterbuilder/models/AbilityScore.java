@@ -1,13 +1,24 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "ability_scores")
 public class AbilityScore {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false, unique = true)
     private String fullName;
+    @Column(nullable = false)
     private String quickDescription;
+    @Column(nullable = false)
     private String longDescription;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ability_score")
     private List<Skill> skills;
 
 

@@ -1,23 +1,44 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "spells")
 public class Spell {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false)
     private int spellLevel;
+    @Column(nullable = false)
     private String description;
+    @Column
     private String higherLevel;
-    private int range;
-    private List<String> components;
+    @Column(nullable = false)
+    private String range;
+    @Column(nullable = false)
+    private String components;
+    @Column
     private String material;
+    @Column(nullable = false)
     private boolean isRitual;
+    @Column
     private String duration;
+    @Column
     private boolean isConcentration;
+    @Column
     private String castingTime;
+    @Column
     private String attackType;
-    private SpellDamage damage;
+    @Column
+    private String damageType;
+    @Column
     private String school;
+    @ManyToMany(mappedBy = "spells")
     private List<CharacterClass> classes;
 
     public Spell() {}
@@ -54,19 +75,19 @@ public class Spell {
         this.higherLevel = higherLevel;
     }
 
-    public int getRange() {
+    public String getRange() {
         return range;
     }
 
-    public void setRange(int range) {
+    public void setRange(String range) {
         this.range = range;
     }
 
-    public List<String> getComponents() {
+    public String getComponents() {
         return components;
     }
 
-    public void setComponents(List<String> components) {
+    public void setComponents(String components) {
         this.components = components;
     }
 
@@ -118,12 +139,12 @@ public class Spell {
         this.attackType = attackType;
     }
 
-    public SpellDamage getDamage() {
-        return damage;
+    public String getDamageType() {
+        return damageType;
     }
 
-    public void setDamage(SpellDamage damage) {
-        this.damage = damage;
+    public void setDamage(String damage) {
+        this.damageType = damageType;
     }
 
     public String getSchool() {

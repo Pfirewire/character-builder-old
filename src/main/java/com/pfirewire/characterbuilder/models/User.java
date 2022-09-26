@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +27,9 @@ public class User {
     @Column(nullable = false)
     @JsonIgnore
     private String password;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<PlayerCharacter> characters;
+
 
     // Constructor functions
     public User () {}

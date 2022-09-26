@@ -1,5 +1,8 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
+
+
 public class SpellDamage {
 
     private String damageType;

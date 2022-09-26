@@ -1,11 +1,26 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "equipment")
 public class Equipment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "cost_id")
     private Currency cost;
+    @Column
     private int weight;
+    @Column
     private String description;
+    @ManyToMany(mappedBy = "equipment")
+    private List<CharacterClass> classStartsWith;
 
 
     public Equipment() {}

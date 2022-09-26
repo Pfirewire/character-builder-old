@@ -1,9 +1,21 @@
 package com.pfirewire.characterbuilder.models;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "ability_bonuses")
 public class AbilityBonus {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne
     private AbilityScore abilityScore;
+    @Column(nullable = false)
     private int bonus;
+    @ManyToMany(mappedBy = "ability_bonuses")
+    private List<Race> races;
 
     public AbilityBonus() {}
 
